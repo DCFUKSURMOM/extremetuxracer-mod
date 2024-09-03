@@ -218,7 +218,7 @@ void DrawSpeed(double speed) {
 	std::string speedstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
 		Tex.DrawNumStr(speedstr,
-		               Winsys.resolution.width - 87, Winsys.resolution.height-73, 1, colWhite);
+		               Winsys.resolution.width - 87, Winsys.resolution.height-73, 1, colLBlue);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(colDDYell);
@@ -283,7 +283,7 @@ void DrawWind(float dir, float speed, const CControl *ctrl) {
 	Tex.Draw(SPEED_KNOB, 5 + texWidth / 2 - 8, Winsys.resolution.height - 5 - texWidth / 2 - 8, 1.0);
 	std::string windstr = Int_StrN((int)speed, 3);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(windstr, 120, Winsys.resolution.height - 45, 1, colWhite);
+		Tex.DrawNumStr(windstr, 120, Winsys.resolution.height - 45, 1, colLBlue);
 	} else {
 		Winsys.beginSFML();
 		FT.SetColor(colDDYell);
@@ -313,11 +313,11 @@ void DrawFps() {
 
 	std::string fpsstr = Int_StrN((int)averagefps);
 	if (param.use_papercut_font < 2) {
-		Tex.DrawNumStr(fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colWhite);
+		Tex.DrawNumStr(fpsstr, (Winsys.resolution.width - 60) / 2, 10, 1, colLBlue);
 	} else {
 		Winsys.beginSFML();
 		if (averagefps >= 35)
-			FT.SetColor(colWhite);
+			FT.SetColor(colLBlue);
 		else
 			FT.SetColor(colRed);
 		FT.DrawString(-1, 3, fpsstr);
@@ -391,8 +391,8 @@ void DrawHud(const CControl *ctrl) {
 		else
 			draw_herring_count(g_game.herring, colGreen);
 	} else {
-		draw_time(g_game.time, param.use_papercut_font < 2 ? colWhite : colDYell);
-		draw_herring_count(g_game.herring, param.use_papercut_font < 2 ? colWhite : colDYell);
+		draw_time(g_game.time, param.use_papercut_font < 2 ? colLBlue : colDYell);
+		draw_herring_count(g_game.herring, param.use_papercut_font < 2 ? colLBlue : colDYell);
 	}
 
 	DrawSpeed(speed * 3.6);
