@@ -86,8 +86,8 @@ void LoadConfigFile() {
 }
 
 void SetConfigDefaults() {
-	param.fullscreen = true;
-	param.res_type = 0; // 0=auto / 1=800x600 / 2=1024x768 ...
+	param.fullscreen = false;
+	param.res_type = 2; // 0=auto / 1=320x240 / 2=640x440 ...
 	param.perf_level = 3;	// detail level
 	param.language = std::string::npos; // If language is set to npos, ETR will try to load default system language
 	param.sound_volume = 90;
@@ -95,8 +95,7 @@ void SetConfigDefaults() {
 
 	// ---------------------------------------
 
-	param.framerate = 60;
-
+	param.framerate = 0;
 	param.forward_clip_distance = 75;
 	param.backward_clip_distance = 20;
 	param.fov = 60;
@@ -107,7 +106,7 @@ void SetConfigDefaults() {
 	param.course_detail_level = 75;
 
 	param.use_papercut_font = 1;
-	param.ice_cursor = true;
+	param.ice_cursor = false;
 	param.full_skybox = false;
 	param.use_quad_scale = false;
 
@@ -142,10 +141,11 @@ void SaveConfigFile() {
 	AddItem(liste, "fullscreen", param.fullscreen);
 	liste.Add();
 
-	AddComment(liste, "Screen resolution [0...9]");
-	AddComment(liste, "0 = auto, 1 = 800x600, 2 = 1024x768");
-	AddComment(liste, "3 = 1152x864, 4 = 1280x960, 5 = 1280x1024");
-	AddComment(liste, "6 = 1360x768, 7 = 1400x1050, 8 = 1440x900, 9=1680x1050");
+	AddComment(liste, "Screen resolution [0...12]");
+	AddComment(liste, "0 = auto, 1 = 320x240, 2 = 640x440");
+	AddComment(liste, "3 = 800x600, 4 = 1024x760, 5 = 1152x864");
+	AddComment(liste, "6 = 1280x960, 7 = 1280x1024, 8 = 1360x768, 9=1440x1050");
+        AddComment(liste, "10 = 1440x900, 11 = 1680x1050, 12 = 1920x1080");
 	AddItem(liste, "res_type", param.res_type);
 	liste.Add();
 
@@ -174,7 +174,7 @@ void SaveConfigFile() {
 	liste.Add();
 
 	AddComment(liste, "Framerate limit");
-	AddComment(liste, "0 = unlimited, default: 60");
+	AddComment(liste, "0 = unlimited, default: 0");
 	AddItem(liste, "framerate", param.framerate);
 	liste.Add();
 
@@ -352,7 +352,7 @@ void InitConfig() {
 
 	param.ui_snow = true;
 	param.view_mode = FOLLOW;
-	param.display_fps = false;
+	param.display_fps = true;
 	param.show_hud = true;
 
 	if (config_exist > 0) {
