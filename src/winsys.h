@@ -20,7 +20,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 
-#define NUM_RESOLUTIONS 10
+#define NUM_RESOLUTIONS 13
 #define SCREENSHOT_FORMAT ".png"
 
 extern TVector2i cursor_pos;
