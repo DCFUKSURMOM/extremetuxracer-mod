@@ -47,15 +47,18 @@ CWinsys::CWinsys()
 
 	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
 	resolutions[0] = TScreenRes(desktopMode.width, desktopMode.height);
-	resolutions[1] = TScreenRes(800, 600);
-	resolutions[2] = TScreenRes(1024, 768);
-	resolutions[3] = TScreenRes(1152, 864);
-	resolutions[4] = TScreenRes(1280, 960);
-	resolutions[5] = TScreenRes(1280, 1024);
-	resolutions[6] = TScreenRes(1360, 768);
-	resolutions[7] = TScreenRes(1400, 1050);
-	resolutions[8] = TScreenRes(1440, 900);
-	resolutions[9] = TScreenRes(1680, 1050);
+        resolutions[1] = TScreenRes(320, 240);
+        resolutions[2] = TScreenRes(640, 440);
+	resolutions[3] = TScreenRes(800, 600);
+	resolutions[4] = TScreenRes(1024, 768);
+	resolutions[5] = TScreenRes(1152, 864);
+	resolutions[6] = TScreenRes(1280, 960);
+	resolutions[7] = TScreenRes(1280, 1024);
+	resolutions[8] = TScreenRes(1360, 768);
+	resolutions[9] = TScreenRes(1400, 1050);
+	resolutions[10] = TScreenRes(1440, 900);
+	resolutions[11] = TScreenRes(1680, 1050);
+        resolutions[12] = TScreenRes(1920, 1080);
 }
 
 const TScreenRes& CWinsys::GetResolution(std::size_t idx) const {
