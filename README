@@ -1,11 +1,5 @@
 For unmodified etr see https://sourceforge.net/projects/extremetuxracer/
 
-For some reason it fails to build if you clone the repo normally, but downloading the source as a .tar.gz seems to work
-
-I have no clue how to fix this issue, I'm pushing the code the same way I do everything else on GitHub
-
-GitHub is just weird sometimes
-
 MODS:
 
 Added 320x240, 640x440, and 1920x1080 to the list of supported resolutions (src/winsys.cpp and src/winsys.h)
