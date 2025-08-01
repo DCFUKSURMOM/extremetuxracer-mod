@@ -9,4 +9,17 @@ the new resolutions.(src/game_config.cpp)
 
 Changed the hud font color to light blue to better fit the theme of the game (src/hud.cpp)
 
+SFML3 support from https://github.com/jcowgill/extremetuxracer/tree/sfml3
+
 More may be done in the future, these are simple changes to a very simple game so maintaining it should be easy enough.
+
+Build/runtime dependencies (Linux):
+sfml glu freetype2 csfml
+These are the package names for Arch Linux, names may vary depending on your distro
+
+Build instructions (Linux):
+git clone https://github.com/DCFUKSURMOM/extremetuxracer-mod
+cd extremetuxracer-mod
+./autogen.sh
+./configure --prefix=/usr
+make
