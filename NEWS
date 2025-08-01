@@ -2,8 +2,14 @@
                            NEWS for Extreme Tux Racer
 ===============================================================================
 
+Version 0.9                                                   ??th of ???, 202?
+-------------------------------------------------------------------------------
 
-Version 0.8.4                                                 10th of May, 2024
+Besides several small improvements and bugfixes, the new Extreme Tux Racer
+version 0.9 features the following changes:
+
+
+Version 0.8.4                                                 ??th of ???, 2024
 -------------------------------------------------------------------------------
 - A, D, W, and S keys work as alternative to cursor keys
 - Prevent configuration values from going below minimum by mouse clicks

@@ -31,7 +31,7 @@ CMusic Music;
 struct TSound {
 	sf::SoundBuffer data;
 	sf::Sound player;
-	explicit TSound(int volume) {
+	explicit TSound(int volume) : player(data) {
 		setVolume(volume);
 	}
 	void setVolume(int volume) {
@@ -39,8 +39,8 @@ struct TSound {
 	}
 
 	void Play(bool loop) {
-		if (player.getStatus() == sf::Sound::Playing) return;
-		player.setLoop(loop);
+		if (player.getStatus() == sf::Sound::Status::Playing) return;
+		player.setLooping(loop);
 		player.play();
 	}
 };
@@ -57,7 +57,6 @@ bool CSound::LoadChunk(const std::string& name, const std::string& filename) {
 	sounds.emplace_back(new TSound(param.sound_volume));
 	if (!sounds.back()->data.loadFromFile(filename)) // Try loading sound buffer
 		return false;
-	sounds.back()->player.setBuffer(sounds.back()->data);
 	SoundIndex[name] = sounds.size()-1;
 	return true;
 }
@@ -66,6 +65,8 @@ bool CSound::LoadChunk(const std::string& name, const std::string& filename) {
 void CSound::LoadSoundList() {
 	CSPList list;
 	if (list.Load(param.sounds_dir, "sounds.lst")) {
+		sounds.reserve(list.size());
+		SoundIndex.reserve(list.size());
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			std::string name = SPStrN(*line, "name");
 			std::string soundfile = SPStrN(*line, "file");
@@ -130,7 +131,7 @@ void CSound::Halt(std::size_t soundid) {
 	if (soundid >= sounds.size()) return;
 
 	// loop_count must be -1 (endless loop) for halt
-	if (sounds[soundid]->player.getLoop())
+	if (sounds[soundid]->player.isLooping())
 		sounds[soundid]->player.stop();
 }
 
@@ -172,6 +173,7 @@ void CMusic::LoadMusicList() {
 	CSPList list;
 	if (list.Load(param.music_dir, "music.lst")) {
 		musics.reserve(list.size());
+		MusicIndex.reserve(list.size());
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			std::string name = SPStrN(*line, "name");
 			std::string musicfile = SPStrN(*line, "file");
@@ -188,6 +190,7 @@ void CMusic::LoadMusicList() {
 	ThemesIndex.clear();
 	if (list.Load(param.music_dir, "racing_themes.lst")) {
 		themes.resize(list.size());
+		ThemesIndex.reserve(list.size());
 		std::size_t i = 0;
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line, i++) {
 			std::string name = SPStrN(*line, "name");
@@ -245,7 +248,7 @@ bool CMusic::Play(sf::Music* music, bool loop, int volume) {
 	volume = clamp(0, volume, MIX_MAX_VOLUME);
 	if (music != curr_music) {
 		music->setVolume(volume);
-		music->setLoop(loop);
+		music->setLooping(loop);
 		if (curr_music)
 			curr_music->stop();
 		curr_music = music;
